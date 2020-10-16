@@ -3,6 +3,29 @@ vim.cmd("packadd packer.nvim")
 return require("packer").startup(function ()
   use { "wbthomason/packer.nvim", opt = true }
 
+  -- ts
+  use {
+    "nvim-treesitter/nvim-treesitter",
+    config = function()
+      require("nvim-treesitter.configs").setup{
+        ensure_installed = {
+          "go",
+          "html",
+          "javascript",
+          "json",
+          "lua",
+          "python",
+          "rust",
+          "toml",
+          "typescript"
+        },
+        highlight = {
+          enable = true
+        }
+      }
+    end
+  }
+
   -- lsp
   use {
     "nvim-lua/completion-nvim",
@@ -42,30 +65,9 @@ return require("packer").startup(function ()
       {
         "aca/completion-tabnine",
         run = "./install.sh"
-      }
+      },
+      "nvim-treesitter/completion-treesitter"
     }
-  }
-
-  use {
-    "nvim-treesitter/nvim-treesitter",
-    config = function()
-      require("nvim-treesitter.configs").setup{
-        ensure_installed = {
-          "go",
-          "html",
-          "javascript",
-          "json",
-          "lua",
-          "python",
-          "rust",
-          "toml",
-          "typescript"
-        },
-        highlight = {
-          enable = true
-        }
-      }
-    end
   }
 
   -- search

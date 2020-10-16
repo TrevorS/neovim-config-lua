@@ -21,5 +21,7 @@ map("n", "<leader>p", "<cmd>lua require('telescope.builtin').find_files{}", { cr
 map("n", "<leader>g", "<cmd>lua require('telescope.builtin').live_grep{}", { cr = true, silent = true })
 
 -- lsp
-map("i", "<tab>", [[ pumvisible() ? "\<C-n>" : "\<tab>" ]], { expr = true })
-map("i", "<s-tab>", [[ pumvisible() ? "\<C-p>" : "\<s-tab>" ]], { expr = true })
+map("i", "<tab>", [[ pumvisible() ? "\<C-n>" : "\<tab>" ]], { expr = true, silent = true })
+map("i", "<s-tab>", [[ pumvisible() ? "\<C-p>" : "\<s-tab>" ]], { expr = true, silent = true })
+
+map("n", "K", "<cmd>lua vim.lsp.buf.hover()", { cr = true, silent = true })
