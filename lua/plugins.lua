@@ -17,7 +17,7 @@ return require("packer").startup(function ()
       local on_attach = function(client)
         completion.on_attach(client)
         status.on_attach(client)
-        diagnostic.on_attach()
+        diagnostic.on_attach(client)
       end
 
       lsp.gopls.setup{
@@ -38,7 +38,11 @@ return require("packer").startup(function ()
     requires = {
       "neovim/nvim-lspconfig",
       "nvim-lua/diagnostic-nvim",
-      "nvim-lua/lsp-status.nvim"
+      "nvim-lua/lsp-status.nvim",
+      {
+        "aca/completion-tabnine",
+        run = "./install.sh"
+      }
     }
   }
 

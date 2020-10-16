@@ -53,6 +53,16 @@ vim.g.diagnostic_insert_delay = 1
 vim.g.completion_matching_strategy_list = { "exact", "substring", "fuzzy" }
 vim.g.completion_matching_ignore_case = true
 
+vim.g.completion_chain_complete_list = {
+  default = {
+    { complete_items = { "lsp", "snippet", "tabnine" } },
+    { mode = "<c-p>" },
+    { mode = "<c-n>" }
+  }
+}
+
+vim.api.nvim_command("autocmd BufEnter * lua require('completion').on_attach()")
+
 vim.o.completeopt = "menuone,noinsert,noselect"
 vim.o.shortmess = vim.o.shortmess .. "c"
 
