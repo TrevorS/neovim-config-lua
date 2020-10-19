@@ -46,6 +46,15 @@ function M.activeLine()
   local filetype = M.getFileType()
   statusline = statusline .. filetype
 
+  -- percent through file
+  local linePercent = M.getLinePercent()
+  statusline = statusline .. " | " .. linePercent
+
+  -- line and column
+  local line = M.getLineNumber()
+  local col = M.getColumnNumber()
+  statusline = statusline .. " | " .. line .. ":" .. col
+
   return statusline
 end
 
@@ -75,6 +84,25 @@ end
 
 function M.getFileType()
   return vim.api.nvim_buf_get_option(0, "filetype")
+end
+
+function M.getLineNumber()
+  return vim.api.nvim_call_function("line", { "." })
+end
+
+function M.getTotalLines()
+  return vim.api.nvim_call_function("line", { "$" })
+end
+
+function M.getColumnNumber()
+  return vim.api.nvim_call_function("col", { "." })
+end
+
+function M.getLinePercent()
+  local line = M.getLineNumber()
+  local totalLines = M.getTotalLines()
+
+  return math.floor(line / totalLines * 100)
 end
 
 function M.isEmpty(str)
