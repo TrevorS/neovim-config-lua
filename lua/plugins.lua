@@ -57,6 +57,11 @@ return require("packer").startup(function ()
         on_attach = on_attach,
         capabilities = status.capabilities
       }
+
+      lsp.pyls.setup{
+        on_attach = on_attach,
+        capabilities = status.capabilities
+      }
     end,
     requires = {
       "neovim/nvim-lspconfig",

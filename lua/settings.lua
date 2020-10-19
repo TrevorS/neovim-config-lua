@@ -43,8 +43,8 @@ vim.o.errorbells = false
 vim.o.mouse = "a"
 
 -- disable automatic commenting (not yet working)
-vim.api.nvim_command("set formatoptions-=cro")
-vim.api.nvim_command("autocmd FileType * setlocal formatoptions-=cro")
+vim.api.nvim_exec("set formatoptions-=cro", false)
+vim.api.nvim_exec("autocmd FileType * setlocal formatoptions-=cro", false)
 
 -- lsp
 vim.g.diagnostic_enable_virtual_text = 1
